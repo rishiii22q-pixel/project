@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - '4000:4000'
+    environment:
+      - JWT_SECRET=change-me
+    volumes:
+      - ./server:/app
+  client:
+    build: ./client
+    ports:
+      - '5173:5173'
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
